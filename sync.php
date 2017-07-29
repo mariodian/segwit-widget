@@ -13,7 +13,7 @@ $percentage = NULL;
 if ($obj->sincePeriodStart) {
   foreach ($obj->sincePeriodStart->stats as $item) {
 
-    if (array_key_exists('version', $item) && $item->version == 536870914) {
+    if (array_key_exists('proposal', $item) && $item->proposal == 'SEGWIT') {
       $count = $item->count;
       $percentage = $item->percentage;
     }
