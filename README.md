@@ -8,6 +8,8 @@ This simple widget for your website checks whether Segregated Witness has alread
 It's fully responsive and adjusts to the parent element's size and style.
 Hope you enjoy it!
 
+[Demo](https://segwit.freedomnode.com/demo.php)
+
 ## Usage
 
 Simply copy and paste the following code where you want the widget displayed:
@@ -17,7 +19,7 @@ Simply copy and paste the following code where you want the widget displayed:
 var js, fjs = d.getElementsByTagName(s)[0];
 if (d.getElementById(id)) return;
 js = d.createElement(s); js.id = id;
-js.src = '//segwit.freedomnode.com/widget.min.js';
+js.src = '//widget.js';
 fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script'));</script>
 <div id="segwit-widget"></div>
@@ -29,3 +31,22 @@ Customize the widget via HTML data property. Example:
 
 ````<div id="segwit-widget" data-bg-color="#333" data-text-color="#aaaaaa"></div>````
 
+bgColor | Background color below a progress bar wrapper
+textColor | Widget text color
+padding | Widget padding in px/rem/em
+align | Text align - (left|right|center)
+statusBgColor | Background color of a top "status" element
+statusTextYes | Text of "yes" SegWit state
+statusTextNo | Text of "no" SegWit state
+statusTextAlmost | Text of "almost there" SegWit state
+progressBgColor | Background color of a progress bar wrapper
+progressRadius | Progress bar radius in px
+progressColor | Progress bar color
+progressColorActivated | Color of "SegWit activated" progress bar
+
+You can also customize it with CSS.
+
+## Acknowledgment
+Data courtesy of [api.qbit.ninja](http://api.qbit.ninja/versionstats). Thank you!
+
+Inspired by [segwit.co](http://www.segwit.co/).
