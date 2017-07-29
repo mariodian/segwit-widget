@@ -31,6 +31,8 @@ Customize the widget via HTML data property. Example:
 
 ````<div id="segwit-widget" data-bg-color="#333" data-text-color="#aaaaaa"></div>````
 
+Key | Description
+------------ | -------------
 bgColor | Background color below a progress bar wrapper
 textColor | Widget text color
 padding | Widget padding in px/rem/em
