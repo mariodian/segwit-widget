@@ -27,8 +27,11 @@
 
         statusBgColor: '#eceff1',
         statusTextYes: 'Yes!',
+        statusTextLockedIn: 'Locked in! Will be activated soon.',
         statusTextNo: 'Not yet :(',
+        statusTextNoLockedIn: 'Locked in! Will be activated in this period.',
         statusTextAlmost: 'Almost there!',
+        statusTextAlmostLockedIn: 'Almost locked in!',
 
         progressBgColor: '#eceff1',
         progressRadius: '3px',
@@ -40,6 +43,7 @@
   for (var attrname in dataset) {
     settings[attrname] = dataset[attrname];
   }
+  // settings = Object.assign(settings, dataset); // Doesn't work in Safari
 
   // Build the widget
   var html = '<div id="' + ns + '-status-wrapper">';
@@ -132,19 +136,32 @@
         if ( typeof obj.data !== 'undefined') {
           var data = obj.data,
               count = data.count,
-              percentage = data.percentage;
+              percentage = data.percentage,
+              lockedIn = data.locked_in;
 
           if (count !== null && percentage !== null) {
             $progress.style.width = percentage + '%';
             $progressPercentage.innerHTML = (percentage % 1 == 0 ? percentage : percentage.toFixed(1)) + '%';
 
             if (percentage >= 95) {
-              $status.innerHTML = settings.statusTextYes;
-              $progress.style.backgroundColor = settings.progressColorActivated;
+              if (lockedIn === 1) {
+                $status.innerHTML = settings.statusTextYes;
+                $progress.style.backgroundColor = settings.progressColorActivated;
+              } else {
+                $status.innerHTML = settings.statusTextLockedIn;
+              }
             } else if (percentage < 95 && percentage >= 90) {
-              $status.innerHTML = settings.statusTextAlmost;
+              if (lockedIn) {
+                $status.innerHTML = settings.statusTextAlmost;
+              } else {
+                $status.innerHTML = settings.statusTextAlmostLockedIn;
+              }
             } else {
-              $status.innerHTML = settings.statusTextNo;;
+              if (lockedIn) {
+                $status.innerHTML = settings.statusTextNoLockedIn;
+              } else {
+                $status.innerHTML = settings.statusTextNo;
+              }
             }
 
             $progressBlocks.innerHTML = count;
@@ -157,6 +174,6 @@
     }
   };
 
-  xmlhttp.open("GET", "//data.php", true);
+  xmlhttp.open("GET", "//segwit.freedomnode.com/data.php", true);
   xmlhttp.send();
 })();
