@@ -39,8 +39,11 @@ padding | Widget padding in px/rem/em
 align | Text align - (left|right|center)
 statusBgColor | Background color of a top "status" element
 statusTextYes | Text of "yes" SegWit state
+statusTextLockedIn | Text of "locked-in" SegWit state
 statusTextNo | Text of "no" SegWit state
+statusTextNoLockedIn | Text of "no" SegWit state but locked in
 statusTextAlmost | Text of "almost there" SegWit state
+statusTextAlmostLockedIn | Text of "almost locked in" SegWit state
 progressBgColor | Background color of a progress bar wrapper
 progressRadius | Progress bar radius in px
 progressColor | Progress bar color
