@@ -10,6 +10,7 @@ $obj = json_decode($data);
 $count = NULL;
 $percentage = NULL;
 $sql_locked_in = '';
+$activation_period_start = 479708;
 
 if ($obj->sincePeriodStart) {
   foreach ($obj->sincePeriodStart->stats as $item) {
@@ -21,8 +22,7 @@ if ($obj->sincePeriodStart) {
   }
 
   if ($count !== NULL && $percentage !== NULL) {
-    // SegWit is locked in on 1916 blocks within a period
-    if ($count >= 1916) {
+    if ($obj->sincePeriodStart->fromHeight >= $activation_period_start) {
         $sql_locked_in = ' , locked_in = 1';
     }
     
