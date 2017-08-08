@@ -6,13 +6,14 @@ require_once('./db.php');
 
 global $conn;
 
-$sql = "SELECT count, percentage FROM data";
+$sql = "SELECT count, percentage, locked_in FROM data";
 $result = $conn->query($sql);
 
 $array = array(
   'data' => array(
     'count' => NULL,
-    'percentage' => NULL
+    'percentage' => NULL,
+    'locked_in' => NULL
   ),
   'result' => NULL
 );
@@ -24,6 +25,7 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_object()) {
     $array['data']['count'] = (int) $row->count;
     $array['data']['percentage'] = (double) $row->percentage;
+    $array['data']['locked_in'] = (int) $row->locked_in;
     $array['result'] = 'ok';
   }
 } else {
