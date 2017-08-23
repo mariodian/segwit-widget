@@ -143,22 +143,22 @@
             $progress.style.width = percentage + '%';
             $progressPercentage.innerHTML = (percentage % 1 == 0 ? percentage : percentage.toFixed(1)) + '%';
 
-            if (percentage >= 95) {
-              if (lockedIn === 1) {
+            if (lockedIn === 1) {
+              $progressThreshold.style.display = 'none';
+
+              if (percentage >= 100) {
                 $status.innerHTML = settings.statusTextYes;
                 $progress.style.backgroundColor = settings.progressColorActivated;
-              } else {
-                $status.innerHTML = settings.statusTextLockedIn;
-              }
-            } else if (percentage < 95 && percentage >= 90) {
-              if (lockedIn) {
+              } else if (percentage < 100 && percentage >= 90) {
                 $status.innerHTML = settings.statusTextAlmost;
               } else {
-                $status.innerHTML = settings.statusTextAlmostLockedIn;
+                $status.innerHTML = settings.statusTextNoLockedIn;
               }
             } else {
-              if (lockedIn) {
-                $status.innerHTML = settings.statusTextNoLockedIn;
+              if (percentage >= 95) {
+                $status.innerHTML = settings.statusTextLockedIn;
+              } else if (percentage < 95 && percentage >= 90) {
+                $status.innerHTML = settings.statusTextAlmostLockedIn;
               } else {
                 $status.innerHTML = settings.statusTextNo;
               }
